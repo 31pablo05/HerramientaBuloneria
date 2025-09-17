@@ -1,0 +1,276 @@
+{
+  "metric_threads": {
+  "M2": {
+    "diameter": 2,
+    "coarse_pitch": 0.4,
+    "fine_pitch": [0.25],
+    "standard_lengths": [4, 5, 6, 8, 10, 12, 16, 20],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M3": {
+    "diameter": 3,
+    "coarse_pitch": 0.5,
+    "fine_pitch": [0.35],
+    "standard_lengths": [6, 8, 10, 12, 16, 20, 25, 30],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M4": {
+    "diameter": 4,
+    "coarse_pitch": 0.7,
+    "fine_pitch": [0.35, 0.5],
+    "standard_lengths": [6, 8, 10, 12, 16, 20, 25, 30, 35, 40],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M5": {
+    "diameter": 5,
+    "coarse_pitch": 0.8,
+    "fine_pitch": [0.5],
+    "standard_lengths": [8, 10, 12, 16, 20, 25, 30, 35, 40, 45, 50],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M6": {
+    "diameter": 6,
+    "coarse_pitch": 1.0,
+    "fine_pitch": [0.5, 0.75],
+    "standard_lengths": [10, 12, 16, 20, 25, 30, 35, 40, 45, 50, 60],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M7": {
+    "diameter": 7,
+    "coarse_pitch": 1.0,
+    "fine_pitch": [0.75],
+    "standard_lengths": [12, 16, 20, 25, 30, 35, 40, 45, 50],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M8": {
+    "diameter": 8,
+    "coarse_pitch": 1.25,
+    "fine_pitch": [0.75, 1.0],
+    "standard_lengths": [12, 16, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M9": {
+    "diameter": 9,
+    "coarse_pitch": 1.25,
+    "fine_pitch": [1.0],
+    "standard_lengths": [16, 20, 25, 30, 35, 40, 45, 50, 60],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M10": {
+    "diameter": 10,
+    "coarse_pitch": 1.5,
+    "fine_pitch": [0.75, 1.0, 1.25],
+    "standard_lengths": [16, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M11": {
+    "diameter": 11,
+    "coarse_pitch": 1.5,
+    "fine_pitch": [1.0, 1.25],
+    "standard_lengths": [20, 25, 30, 35, 40, 45, 50, 60, 70],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M12": {
+    "diameter": 12,
+    "coarse_pitch": 1.75,
+    "fine_pitch": [1.0, 1.25, 1.5],
+    "standard_lengths": [20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M13": {
+    "diameter": 13,
+    "coarse_pitch": 1.75,
+    "fine_pitch": [1.5, 1.25],
+    "standard_lengths": [25, 30, 35, 40, 45, 50, 60, 70, 80],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M14": {
+    "diameter": 14,
+    "coarse_pitch": 2.0,
+    "fine_pitch": [1.0, 1.25, 1.5, 1.75],
+    "standard_lengths": [25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M15": {
+    "diameter": 15,
+    "coarse_pitch": 2.0,
+    "fine_pitch": [1.5, 1.25],
+    "standard_lengths": [25, 30, 35, 40, 45, 50, 60, 70, 80],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M16": {
+    "diameter": 16,
+    "coarse_pitch": 2.0,
+    "fine_pitch": [1.0, 1.25, 1.5],
+    "standard_lengths": [25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M18": {
+    "diameter": 18,
+    "coarse_pitch": 2.5,
+    "fine_pitch": [1.25, 1.5, 2.0],
+    "standard_lengths": [30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M20": {
+    "diameter": 20,
+    "coarse_pitch": 2.5,
+    "fine_pitch": [2.0, 1.5],
+    "standard_lengths": [30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M22": {
+    "diameter": 22,
+    "coarse_pitch": 2.5,
+    "fine_pitch": [2.0, 1.5],
+    "standard_lengths": [40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M24": {
+    "diameter": 24,
+    "coarse_pitch": 3.0,
+    "fine_pitch": [1.5, 2.0],
+    "standard_lengths": [40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M27": {
+    "diameter": 27,
+    "coarse_pitch": 3.0,
+    "fine_pitch": [1.5, 2.0],
+    "standard_lengths": [50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200, 220, 240],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M30": {
+    "diameter": 30,
+    "coarse_pitch": 3.5,
+    "fine_pitch": [3.0, 2.0],
+    "standard_lengths": [50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200, 220, 240, 260],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M33": {
+    "diameter": 33,
+    "coarse_pitch": 3.5,
+    "fine_pitch": [3.0, 2.0],
+    "standard_lengths": [60, 70, 80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M36": {
+    "diameter": 36,
+    "coarse_pitch": 4.0,
+    "fine_pitch": [3.0, 2.0],
+    "standard_lengths": [70, 80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  },
+  "M39": {
+    "diameter": 39,
+    "coarse_pitch": 4.0,
+    "fine_pitch": [3.0, 2.0],
+    "standard_lengths": [80, 90, 100, 120, 140, 160, 180, 200],
+    "head_types": ["hex", "allen", "phillips", "flat", "pan"]
+  }
+  },
+  "washers": {
+    "M3": {
+      "inner_diameter": 3.2,
+      "outer_diameter": 7,
+      "thickness": 0.5
+    },
+    "M4": {
+      "inner_diameter": 4.3,
+      "outer_diameter": 9,
+      "thickness": 0.8
+    },
+    "M5": {
+      "inner_diameter": 5.3,
+      "outer_diameter": 10,
+      "thickness": 1.0
+    },
+    "M6": {
+      "inner_diameter": 6.4,
+      "outer_diameter": 12,
+      "thickness": 1.6
+    },
+    "M8": {
+      "inner_diameter": 8.4,
+      "outer_diameter": 16,
+      "thickness": 1.6
+    },
+    "M10": {
+      "inner_diameter": 10.5,
+      "outer_diameter": 20,
+      "thickness": 2.0
+    },
+    "M12": {
+      "inner_diameter": 13,
+      "outer_diameter": 24,
+      "thickness": 2.5
+    },
+    "M14": {
+      "inner_diameter": 15,
+      "outer_diameter": 28,
+      "thickness": 2.5
+    },
+    "M16": {
+      "inner_diameter": 17,
+      "outer_diameter": 30,
+      "thickness": 3.0
+    },
+    "M18": {
+      "inner_diameter": 19,
+      "outer_diameter": 34,
+      "thickness": 3.0
+    },
+    "M20": {
+      "inner_diameter": 21,
+      "outer_diameter": 37,
+      "thickness": 3.0
+    },
+    "M22": {
+      "inner_diameter": 23,
+      "outer_diameter": 39,
+      "thickness": 3.0
+    },
+    "M24": {
+      "inner_diameter": 25,
+      "outer_diameter": 44,
+      "thickness": 4.0
+    },
+    "M27": {
+      "inner_diameter": 28,
+      "outer_diameter": 50,
+      "thickness": 4.0
+    },
+    "M30": {
+      "inner_diameter": 31,
+      "outer_diameter": 56,
+      "thickness": 4.0
+    }
+  },
+  "head_types": {
+    "hex": {
+      "name": "Hexagonal",
+      "description": "Cabeza hexagonal estándar",
+      "tool": "Llave hexagonal"
+    },
+    "allen": {
+      "name": "Allen",
+      "description": "Cabeza cilíndrica con hueco hexagonal",
+      "tool": "Llave Allen"
+    },
+    "phillips": {
+      "name": "Phillips",
+      "description": "Cabeza con cruz Phillips",
+      "tool": "Destornillador Phillips"
+    },
+    "flat": {
+      "name": "Plana",
+      "description": "Cabeza plana con ranura",
+      "tool": "Destornillador plano"
+    },
+    "pan": {
+      "name": "Pan",
+      "description": "Cabeza cilíndrica redondeada",
+      "tool": "Destornillador Phillips/plano"
+    }
+  }
+}
