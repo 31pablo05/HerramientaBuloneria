@@ -5,8 +5,8 @@ const initialState = {
   // Paso actual del flujo
   currentStep: 1,
   
-  // Datos recolectados
-  pieceType: '', // 'bolt', 'nut', 'washer'
+  // Datos recolectados - solo para bulones/tornillos
+  pieceType: 'bolt', // Siempre 'bolt' ahora
   diameter: {
     value: '',
     unit: 'mm', // 'mm' o 'inch'

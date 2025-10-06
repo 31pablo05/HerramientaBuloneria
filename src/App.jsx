@@ -6,7 +6,8 @@ import './App.css';
 function App() {
   return (
     <IdentificationProvider>
-      <div className="App">
+      {/* Container full-width responsive para BulonScan */}
+      <div className="min-h-screen w-full bg-gradient-to-br from-steel-50 via-white to-steel-100">
         <Home />
       </div>
     </IdentificationProvider>

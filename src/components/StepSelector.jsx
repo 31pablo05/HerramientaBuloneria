@@ -2,29 +2,15 @@ import React from 'react';
 import { useIdentification } from '../context/useIdentification';
 
 const StepSelector = () => {
-  const { state, actions } = useIdentification();
+  const { actions } = useIdentification();
   
   const pieceTypes = [
     {
       id: 'bolt',
       name: 'Tornillo / Bulón',
-      description: 'Elemento roscado con cabeza y cuerpo cilíndrico',
-      icon: '🔩',
-      features: ['Cabeza', 'Rosca', 'Longitud específica']
-    },
-    {
-      id: 'nut',
-      name: 'Tuerca',
-      description: 'Elemento roscado internamente para acoplar con tornillo',
-      icon: '🔘',
-      features: ['Rosca interna', 'Forma hexagonal típica', 'Sin longitud']
-    },
-    {
-      id: 'washer',
-      name: 'Arandela',
-      description: 'Elemento plano para distribuir carga y proteger superficie',
-      icon: '⭕',
-      features: ['Sin rosca', 'Distribución de carga', 'Protección']
+      description: 'Identificación por diámetro y paso de rosca',
+      icon: '�',
+      features: ['Medición con calibre', 'Verificación con peine de roscas', 'Sistema métrico o Whitworth']
     }
   ];
   
@@ -39,105 +25,64 @@ const StepSelector = () => {
   return (
     <div className="w-full max-w-4xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">
-          Paso 1: Seleccionar Tipo de Pieza
+        <h2 className="text-3xl font-bold text-primary-navy mb-4">
+          Identificación de Tornillos y Bulones
         </h2>
-        <p className="text-gray-600 text-lg">
-          Identifique qué tipo de elemento necesita clasificar
+        <p className="text-steel-600 text-lg">
+          Sistema rápido para identificar medidas métricas y Whitworth mediante calibre y peine de roscas
         </p>
+        <div className="mt-4 bg-primary-light border-2 border-primary-cyan/30 rounded-lg p-4 text-left">
+          <p className="text-sm text-primary-navy font-semibold mb-2">📏 Herramientas necesarias:</p>
+          <ul className="text-sm text-steel-700 space-y-1">
+            <li>• Calibre (pie de rey) para medir diámetro exterior</li>
+            <li>• Peine de roscas para verificar el paso</li>
+          </ul>
+        </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="flex justify-center">
         {pieceTypes.map((piece) => (
           <div
             key={piece.id}
             onClick={() => handleSelection(piece.id)}
-            className={`
-              relative cursor-pointer rounded-lg border-2 p-6 transition-all duration-200 hover:shadow-lg
-              ${state.pieceType === piece.id 
-                ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200' 
-                : 'border-gray-300 bg-white hover:border-gray-400'
-              }
-            `}
+            className="max-w-md w-full relative cursor-pointer rounded-xl border-2 p-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl border-primary-cyan bg-gradient-to-br from-primary-light to-white ring-2 ring-primary-cyan/30 hover:ring-4 hover:ring-primary-cyan/50"
           >
             <div className="text-center">
-              <div className="text-6xl mb-4">
+              <div className="text-8xl mb-6 animate-bounce">
                 {piece.icon}
               </div>
               
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-2xl font-bold text-primary-navy mb-3">
                 {piece.name}
               </h3>
               
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-steel-700 text-base mb-6 font-medium">
                 {piece.description}
               </p>
               
-              <div className="border-t pt-4">
-                <h4 className="text-sm font-medium text-gray-700 mb-2">
-                  Características:
+              <div className="border-t-2 border-primary-cyan/30 pt-5">
+                <h4 className="text-base font-bold text-primary-blue mb-3">
+                  📋 Proceso de identificación:
                 </h4>
-                <ul className="text-xs text-gray-600 space-y-1">
+                <ul className="text-sm text-steel-700 space-y-2">
                   {piece.features.map((feature, index) => (
-                    <li key={index} className="flex items-center justify-center">
-                      <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>
-                      {feature}
+                    <li key={index} className="flex items-start justify-center">
+                      <span className="text-primary-cyan font-bold mr-2">{index + 1}.</span>
+                      <span className="text-left">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+              
+              <button className="mt-6 px-8 py-3 bg-gradient-primary text-white font-bold rounded-lg shadow-tool-lg hover:shadow-xl transition-all transform hover:scale-110 hover:ring-4 hover:ring-primary-cyan/30">
+                Iniciar Identificación →
+              </button>
             </div>
-            
-            {state.pieceType === piece.id && (
-              <div className="absolute top-2 right-2">
-                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              </div>
-            )}
           </div>
         ))}
       </div>
       
-      {state.pieceType && (
-        <div className="mt-8 text-center">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 inline-block">
-            <div className="flex items-center text-green-700">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span className="font-medium">
-                Tipo seleccionado: {pieceTypes.find(p => p.id === state.pieceType)?.name}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      <div className="mt-8 flex justify-between">
-        <button
-          onClick={() => actions.resetIdentification()}
-          className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-        >
-          Reiniciar
-        </button>
-        
-        <button
-          onClick={() => actions.nextStep()}
-          disabled={!state.pieceType}
-          className={`
-            px-6 py-3 rounded-lg font-medium transition-all
-            ${state.pieceType 
-              ? 'bg-blue-500 text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-200' 
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }
-          `}
-        >
-          Continuar →
-        </button>
-      </div>
+
     </div>
   );
 };

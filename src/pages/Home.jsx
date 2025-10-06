@@ -1,19 +1,18 @@
 import React from 'react';
 import { useIdentification } from '../context/useIdentification';
 
-// Importar todos los componentes del flujo
+// Importar todos los componentes del flujo de identificación de bulones
 import StepSelector from '../components/StepSelector';
 import DiameterInput from '../components/DiameterInput';
 import ThreadSelector from '../components/ThreadSelector';
 import LengthInput from '../components/LengthInput';
 import HeadTypeSelector from '../components/HeadTypeSelector';
-import NutIdentifier from '../components/NutIdentifier';
 import ResultCard from '../components/ResultCard';
 
 const Home = () => {
   const { state, actions } = useIdentification();
   
-  // Determinar qué componente mostrar según el paso actual y tipo de pieza
+  // Determinar qué componente mostrar según el paso actual
   const getCurrentComponent = () => {
     switch (state.currentStep) {
       case 1:
@@ -23,22 +22,9 @@ const Home = () => {
       case 3:
         return <ThreadSelector />;
       case 4:
-        // Para tuercas, mostrar NutIdentifier en lugar de LengthInput
-        if (state.pieceType === 'nut') {
-          return <NutIdentifier />;
-        } else if (state.pieceType === 'bolt') {
-          return <LengthInput />;
-        } else {
-          // Para arandelas, saltar directamente al resultado
-          return <ResultCard />;
-        }
+        return <LengthInput />;
       case 5:
-        // Solo para tornillos/bulones
-        if (state.pieceType === 'bolt') {
-          return <HeadTypeSelector />;
-        } else {
-          return <ResultCard />;
-        }
+        return <HeadTypeSelector />;
       case 6:
         return <ResultCard />;
       default:
@@ -48,22 +34,7 @@ const Home = () => {
   
   // Obtener el progreso actual
   const getProgress = () => {
-    let totalSteps = 6; // Valor por defecto
-    
-    switch (state.pieceType) {
-      case 'bolt':
-        totalSteps = 6; // Tipo, Diámetro, Rosca, Largo, Cabeza, Resultado
-        break;
-      case 'nut':
-        totalSteps = 5; // Tipo, Diámetro, Rosca, Identificación específica, Resultado
-        break;
-      case 'washer':
-        totalSteps = 4; // Tipo, Diámetro, Confirmación, Resultado
-        break;
-      default:
-        totalSteps = 6;
-    }
-    
+    const totalSteps = 6; // Tipo, Diámetro, Rosca, Largo, Cabeza, Resultado
     return Math.round((state.currentStep / totalSteps) * 100);
   };
   
@@ -71,39 +42,35 @@ const Home = () => {
   const getStepName = () => {
     switch (state.currentStep) {
       case 1:
-        return 'Tipo de pieza';
+        return 'Inicio';
       case 2:
-        return 'Diámetro nominal';
+        return 'Diámetro (calibre)';
       case 3:
-        return 'Paso de rosca';
+        return 'Paso de rosca (peine)';
       case 4:
-        if (state.pieceType === 'nut') return 'Identificación de tuerca';
-        if (state.pieceType === 'bolt') return 'Longitud';
-        return 'Confirmación';
+        return 'Longitud';
       case 5:
-        if (state.pieceType === 'bolt') return 'Tipo de cabeza';
-        return 'Resultado';
+        return 'Tipo de cabeza';
       case 6:
-        return 'Resultado';
+        return 'Resultado final';
       default:
         return 'Identificación';
     }
   };
   
   return (
-  <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-100 animate-fade-in">
-      {/* Header de la aplicación */}
-  <header className="bg-gradient-to-r from-blue-100 via-white to-purple-100 shadow-lg border-b border-gray-200 animate-header-fade">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24 md:h-28">
-            <div className="flex items-center">
-              <div className="mr-6 flex items-center">
-                <div className="bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-full p-2 shadow-2xl animate-logo-pop">
+    <div className="min-h-screen w-full bg-gradient-to-br from-primary-light via-white to-steel-100">
+      {/* Header de la aplicación - Full width */}
+      <header className="w-full bg-gradient-navy shadow-xl border-b-4 border-primary-cyan">
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+          <div className="flex items-center justify-between h-20 sm:h-24 md:h-28 lg:h-32">
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+              <div className="flex items-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-2xl animate-logo-pop border-2 border-primary-cyan/30">
                   <img
-                    src="/public/logo/herramienta bulonerialogo.svg"
-                    alt="Logo Herramienta Bulonería"
-                    className="w-24 h-24 md:w-32 md:h-32 animate-spin-slow drop-shadow-xl"
-                    style={{ animation: 'spin 6s linear infinite' }}
+                    src="/logo/BulonScan.svg"
+                    alt="BulonScan Logo"
+                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 drop-shadow-2xl"
                   />
                 </div>
                 <style>{`
@@ -125,11 +92,12 @@ const Home = () => {
                 `}</style>
               </div>
               <div>
-                <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 tracking-tight mb-1 animate-fade-in">
-                  Herramienta de Identificación
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white tracking-tight mb-0.5 sm:mb-1 drop-shadow-lg">
+                  BulonScan
                 </h1>
-                <p className="text-base md:text-lg text-gray-700 font-medium animate-fade-in">
-                  Sistema de identificación de bulonería métrica y Whitworth
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-primary-cyan font-semibold flex items-center gap-1 sm:gap-2">
+                  <span className="inline-block w-2 h-2 bg-primary-cyan rounded-full animate-pulse"></span>
+                  Identificación Profesional de Bulonería
                 </p>
               </div>
             </div>
@@ -137,54 +105,44 @@ const Home = () => {
             {/* Información del usuario actual */}
             <div className="hidden md:flex items-center space-x-4 animate-fade-in">
               <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">Empleado</p>
-                <p className="text-xs text-gray-600">Bulonería Industrial</p>
+                <p className="text-sm font-semibold text-white">Empleado</p>
+                <p className="text-xs text-primary-cyan">Ferretería Industrial</p>
               </div>
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white animate-pop">
-                <span className="text-white text-lg font-bold">U</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-cyan to-primary-blue rounded-full flex items-center justify-center shadow-tool-lg border-2 border-white/30 animate-pop">
+                <span className="text-primary-navy text-lg font-bold">👤</span>
               </div>
-              <style>{`
-                @keyframes pop {
-                  0% { transform: scale(0.7); }
-                  60% { transform: scale(1.1); }
-                  100% { transform: scale(1); }
-                }
-                .animate-pop { animation: pop 1s cubic-bezier(.68,-0.55,.27,1.55) 1; }
-              `}</style>
             </div>
           </div>
         </div>
       </header>
       
-      {/* Barra de progreso */}
+      {/* Barra de progreso - Full width */}
       {state.currentStep > 1 && (
-        <div className="bg-gradient-to-r from-blue-100 via-white to-purple-100 border-b border-gray-200 shadow-sm animate-fade-in">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-700">
-                Paso {state.currentStep}: {getStepName()}
-              </span>
-              <span className="text-sm text-gray-500">
-                {getProgress()}% completado
+        <div className="w-full bg-white border-b-2 border-steel-200 shadow-tool">
+          <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-3 sm:py-4 md:py-5">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="text-base sm:text-lg md:text-xl font-bold text-primary-navy">
+                  Paso {state.currentStep}/6
+                </span>
+                <span className="text-xs sm:text-sm font-medium text-primary-blue px-2 sm:px-3 py-1 bg-primary-light rounded-full">
+                  {getStepName()}
+                </span>
+              </div>
+              <span className="text-sm font-bold text-primary-cyan">
+                {getProgress()}%
               </span>
             </div>
             
-            <div className="w-full bg-gray-200 rounded-full h-3 shadow-inner">
+            <div className="w-full bg-steel-200 rounded-full h-4 shadow-inner-light">
               <div 
-                className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-3 rounded-full transition-all duration-700 ease-out animate-progress"
-                style={{ width: `${getProgress()}%` }}
+                className="bg-gradient-primary h-4 rounded-full transition-all duration-700 ease-out animate-progress shadow-lg"
+                style={{ width: `${getProgress()}%`, '--progress-width': `${getProgress()}%` }}
               ></div>
-              <style>{`
-                .animate-progress { animation: progress-bar 1.2s cubic-bezier(.68,-0.55,.27,1.55); }
-                @keyframes progress-bar {
-                  0% { width: 0; }
-                  100% { width: ${getProgress()}%; }
-                }
-              `}</style>
             </div>
             
             {/* Indicadores de pasos */}
-            <div className="flex justify-between mt-3">
+            <div className="flex justify-between mt-3 sm:mt-4 gap-1 sm:gap-2">
               {Array.from({ length: actions.getTotalSteps() }, (_, index) => {
                 const stepNumber = index + 1;
                 const isCompleted = stepNumber < state.currentStep;
@@ -193,12 +151,12 @@ const Home = () => {
                 return (
                   <div 
                     key={stepNumber}
-                    className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shadow-lg border-2 transition-all duration-300
+                    className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-xs sm:text-sm md:text-base font-bold shadow-tool border-2 transition-all duration-300
                       ${isCompleted 
-                        ? 'bg-gradient-to-br from-green-400 to-green-600 text-white border-green-500 scale-105' 
+                        ? 'bg-success text-white border-success/50 scale-105' 
                         : isCurrent 
-                          ? 'bg-gradient-to-br from-blue-500 to-purple-500 text-white border-blue-400 scale-110 ring-2 ring-blue-200' 
-                          : 'bg-gray-200 text-gray-600 border-gray-300'
+                          ? 'bg-gradient-primary text-white border-primary-cyan scale-110 ring-4 ring-primary-cyan/30 animate-pulse-slow' 
+                          : 'bg-steel-200 text-steel-500 border-steel-300'
                       } animate-fade-in`}
                   >
                     {isCompleted ? <span className="text-lg">✓</span> : stepNumber}
@@ -210,92 +168,121 @@ const Home = () => {
         </div>
       )}
       
-      {/* Contenido principal */}
-  <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
-        {getCurrentComponent()}
+      {/* Contenido principal - Full width responsive */}
+      <main className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 md:py-10 lg:py-12">
+        <div className="animate-fade-in">
+          {getCurrentComponent()}
+        </div>
       </main>
       
-      {/* Footer */}
-  <footer className="bg-gradient-to-r from-blue-100 via-white to-purple-100 border-t border-gray-200 mt-16 shadow-lg animate-fade-in">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Footer - Full width */}
+      <footer className="w-full bg-gradient-navy border-t-4 border-primary-cyan mt-8 sm:mt-12 md:mt-16 shadow-2xl">
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 md:py-10">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
-              <div className="bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-full p-2 shadow-xl mr-3 animate-logo-pop">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-2 shadow-tool-lg mr-4 border-2 border-primary-cyan/30">
                 <img
-                  src="/public/logo/herramienta bulonerialogo.svg"
-                  alt="Logo Herramienta Bulonería"
-                  className="w-10 h-10 md:w-14 md:h-14 animate-spin-slow drop-shadow-lg"
-                  style={{ animation: 'spin 6s linear infinite' }}
+                  src="/logo/BulonScan.svg"
+                  alt="BulonScan Logo"
+                  className="w-12 h-12 md:w-16 md:h-16 drop-shadow-2xl"
                 />
               </div>
               <div>
-                <p className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">
-                  Herramienta de Identificación de Bulonería
+                <p className="text-lg font-bold text-white">
+                  BulonScan
                 </p>
-                <p className="text-xs text-gray-600">
-                  Versión 1.0 - Para uso interno en ferreterías
+                <p className="text-sm text-primary-cyan">
+                  v2.0 - Herramienta Profesional
                 </p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-6 text-sm text-gray-600 animate-fade-in">
+            <div className="flex items-center space-x-6 text-sm animate-fade-in">
               <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                <span className="font-semibold text-green-700">Sistema operativo</span>
+                <span className="w-2 h-2 bg-success rounded-full mr-2 animate-pulse"></span>
+                <span className="font-semibold text-success">Sistema activo</span>
               </div>
               
               <button
                 onClick={() => actions.resetIdentification()}
-                className="text-blue-600 hover:text-purple-600 font-bold transition-all duration-300 transform hover:scale-110"
+                className="text-primary-cyan hover:text-white font-bold transition-all duration-300 transform hover:scale-110 px-4 py-2 rounded-lg hover:bg-white/10"
               >
-                Reiniciar identificación
+                🔄 Reiniciar
               </button>
               
               <button
                 onClick={() => actions.toggleHistory()}
-                className="text-purple-600 hover:text-blue-600 font-bold transition-all duration-300 transform hover:scale-110"
+                className="text-white hover:text-primary-cyan font-bold transition-all duration-300 transform hover:scale-110 px-4 py-2 rounded-lg hover:bg-white/10"
               >
-                Ver historial ({state.history.length})
+                📋 Historial ({state.history.length})
               </button>
             </div>
           </div>
           
           {/* Información adicional */}
-          <div className="mt-4 pt-4 border-t border-gray-200 animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-500">
-              <div>
-                <p className="font-medium mb-1">Estándares soportados:</p>
-                <p>• Sistema Métrico (ISO)</p>
-                <p>• Sistema Whitworth (BSW)</p>
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm">
+              <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                <p className="font-bold mb-2 text-primary-cyan flex items-center gap-2">
+                  <span>📏</span> Estándares Soportados
+                </p>
+                <p className="text-white/80">✓ Sistema Métrico ISO (M2-M68)</p>
+                <p className="text-white/80">✓ Sistema Whitworth BSW/BSF</p>
               </div>
               
-              <div>
-                <p className="font-medium mb-1">Tipos de elementos:</p>
-                <p>• Tornillos y bulones</p>
-                <p>• Tuercas</p>
-                <p>• Arandelas</p>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                <p className="font-bold mb-2 text-primary-cyan flex items-center gap-2">
+                  <span>🔩</span> Identificación
+                </p>
+                <p className="text-white/80">• Bulones y tornillos</p>
+                <p className="text-white/80">• Medición con calibre + peine</p>
               </div>
               
-              <div>
-                <p className="font-medium mb-1">Precisión de medida:</p>
-                <p>• Diámetros: ±0.1 mm</p>
-                <p>• Pasos de rosca: ±0.05 mm</p>
-                <p>• Longitudes: ±1 mm</p>
+              <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                <p className="font-bold mb-2 text-primary-cyan flex items-center gap-2">
+                  <span>🎯</span> Precisión
+                </p>
+                <p className="text-white/80">Diámetro: ±0.02mm</p>
+                <p className="text-white/80">Paso rosca: ±0.08mm</p>
               </div>
             </div>
+          </div>
+          
+          <div className="mt-4 text-center">
+            <p className="text-xs text-white/50">
+              © 2025 BulonScan - Desarrollado para profesionales de la industria
+            </p>
+            <p className="text-xs text-white/60 mt-2 flex items-center justify-center gap-2">
+              Desarrollado con 
+              <span className="text-red-500 animate-pulse-slow inline-block">❤️</span> 
+              por 
+              <a 
+                href="https://devcraftpablo.online/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary-cyan hover:text-white font-semibold transition-colors duration-300 hover:underline"
+              >
+                Pablo Proboste
+              </a>
+            </p>
           </div>
         </div>
       </footer>
       
       {/* Overlay de carga global */}
       {state.isLoading && (
-        <div className="fixed inset-0 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 bg-opacity-60 flex items-center justify-center z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl p-8 max-w-sm mx-4 shadow-2xl border-2 border-blue-200 animate-fade-in">
+        <div className="fixed inset-0 bg-primary-navy/90 backdrop-blur-md flex items-center justify-center z-50 animate-fade-in">
+          <div className="bg-white rounded-3xl p-8 max-w-sm mx-4 shadow-tool-lg border-4 border-primary-cyan animate-fade-in">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-blue-700 font-bold text-lg">Procesando...</p>
-              <p className="text-gray-600 text-sm mt-1">
-                Analizando datos de identificación
+              <div className="relative">
+                <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary-cyan mx-auto mb-4"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-2xl">🔩</span>
+                </div>
+              </div>
+              <p className="text-primary-navy font-bold text-xl mb-2">Procesando...</p>
+              <p className="text-steel-600 text-sm">
+                Analizando datos con precisión profesional
               </p>
             </div>
           </div>
